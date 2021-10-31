@@ -66,6 +66,7 @@ def decryption(cipher):
             possibleChrs.append(alphabet[53*1 + indexes[1] - indexes[0]])
         else:
             possibleChrs.append(alphabet[53*0 + indexes[1] - indexes[0]])
-    print(possibleChrs)
+    plainText = "".join(possibleChrs)
+    print(plainText)
 
-decryption(encryption("Hello world"))
+print(encryption("Hello world"))
