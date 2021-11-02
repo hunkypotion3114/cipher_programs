@@ -1,4 +1,5 @@
 # let us begin this amazing journey through shit. LOL
+from math import remainder
 import random
 import numpy as np
 
@@ -55,3 +56,26 @@ def encryption(plainText):
 
 print(encryption("Hello World"))
 
+
+def decryption(cipher):
+    cipherText = list(cipher[0])
+    n = cipher[2]
+    keyMatrixInv = np.linalg.inv(cipher[1])
+    alphabet = alphabetinitialise()
+    matrixInv = []
+    for e in range(0,n):
+        axis = keyMatrixInv[e]
+        for f in range(0,n):
+            term = str(axis[f]).split(".")
+            decimalVal = term[1]
+            if decimalVal[0] == "9":
+                matrixInv.append((int(term[0])) +1)
+            else:
+                matrixInv.append(int(term[0]))
+    matrixInv = np.reshape(matrixInv , (n,n))
+    remainderList = np.reshape(list(map(lambda x : alphabet.index(x) , cipherText)) , ((len(cipherText)//n) , n))
+
+decryption(['GjstNxiopBJN', np.array([[ 0.12168397, -0.04867359,  0.05397924, -0.1005767 ],
+       [ 0.05074971, -0.12029988, -0.06089965,  0.13056517],
+       [-0.18800461,  0.07520185,  0.02560554,  0.08904268],
+       [ 0.02422145,  0.09031142, -0.02906574, -0.07404844]]), 4])
